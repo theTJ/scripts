@@ -1,0 +1,10 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document  url-prefix(https://pod.geraspora.de),
+            domain(pod.geraspora.de/stream)
+{
+
+#xeyes
+{
+display: none;
+}
