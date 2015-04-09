@@ -1,0 +1,378 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document  url-prefix(https://pod.geraspora.de),
+            domain(pod.geraspora.de/stream)
+{
+
+#xeyes
+{
+display: none;
+}
+
+img[src="assets/branding/header-logo.png"] {
+    display: none;
+}
+
+.diaspora_header_logo
+{
+display: none;
+
+}
+
+//#.diaspora_header_logo
+{
+display: none;
+}
+
+.expander
+{
+color: white!important;
+background-color: black !important;
+background: linear-gradient( black, black) !important;
+
+}
+
+
+.user-menu-avatar 
+{ 
+visibility: hidden; 
+} 
+
+body
+{
+background-color: black;
+color: white;
+}
+
+.avatar
+{
+display: none;
+}
+.comment_box
+{
+background-color: black;
+color: white;
+}
+
+.ltr
+{
+#background-color: black; 
+color: white;
+-moz-opacity:0.5;
+}
+
+.conversation_participants
+{
+display: none;
+}
+
+.section
+{
+display: none;
+}
+
+.mentions-input-box
+{
+background-color: black;
+}
+
+#publisher_textarea_wrapper
+{
+background-color: black;
+}
+
+#locator
+{
+display: none;
+}
+
+#file-upload
+{
+background-color: black;
+}
+
+#home_user_badge
+{
+display: none;
+}
+
+.conversation_show
+{
+background-color: black;
+}
+
+.stream_container
+{
+background-color: black;
+}
+
+#message_text
+{
+background-color: black;
+color: white !important;
+}
+
+.notification_message
+{
+background-color: black;
+color: white;
+}
+.notification_element
+{
+background-color: black;
+}
+
+.notifications
+{
+background-color: black;
+color: white;
+}
+
+.header
+{
+background-color: black;
+}
+
+.active
+{
+background-color: black;
+color: black;
+}
+
+.notification_element.unread
+{
+color: white;
+background-color: black;
+hov
+}
+
+
+DIV#notification_badge.badge.badge-inverse.active
+{
+background-color: black !important;
+}
+
+INPUT#q.ac_input.active
+{
+background-color: black;
+color: white;
+}
+
+.notification_element.unread
+{
+color: black;
+}
+
+.hoverable.selected
+{
+color: white !important;
+}
+
+#leftNavBar
+{
+color: white;
+}
+
+#hovercard
+{
+background-color: black;
+}
+
+a.author-name.hovercardable
+{
+color: white;
+}
+
+div.hashtags
+{
+background-color; black;
+}
+
+.notification_element.unread 
+{
+background-color: black !important;
+}
+
+h3
+{
+color: white !important;
+}
+
+h2
+{
+color: white !important;
+}
+
+h1
+{
+color: white !important;
+}
+
+li.hoverable.selected
+{
+display: none !important;
+}
+
+DIV.icons-deletelabel.delete.control_icon
+{
+color: white !important;
+}
+
+SELECT#user_auto_follow_back_aspect_id
+{
+background-color: black !important;
+color: white !important;
+}
+
+SELECT#user_language
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#user_password_confirmation
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#user_password
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#user_current_password
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#user_email.span7
+{
+background-color: black !important;
+color: white !important;
+}
+
+div.well.enclosed-checkbox
+{
+background-color: black !important;
+color: white !important;
+}
+
+SELECT#profile_date_day.span4
+{
+
+background-color: black !important;
+color: white !important;
+}
+
+SELECT#profile_date_month.span4
+{
+background-color: black !important;
+color: white !important;
+}
+
+SELECT#profile_date_year.span4
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#profile_gender.span12
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#profile_location.span12
+{
+background-color: black !important;
+color: white !important;
+}
+
+TEXTAREA#profile_bio
+{
+background-color: black !important;
+color: white !important;
+}
+
+UL#as-selections-tags.as-selections
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#tags.as-input
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#profile_last_name
+{
+background-color: black !important;
+color: white !important;
+}
+
+INPUT#profile_first_name
+{
+background-color: black !important;
+color: white !important;
+}
+
+li.active
+{
+background-color: black !important;
+color: white !important;
+}
+
+#publisher_textarea_wrapper
+{
+color: white !important;
+}
+
+TEXTAREA#status_message_fake_tex
+{
+color: white !important;
+}
+
+INPUT#user_username.input-block-level.form-control
+{
+color: white !important;
+background-color: black;
+}
+
+.oembed
+{
+background-color: black !important;
+color: white !important;
+}
+
+TEXTAREA#status_message_fake_text
+{
+background-color: black !important;
+color: white !important;
+}
+
+.stream_container 
+{
+min-height: 500px;
+border-left: 1px solid rgb(221, 221, 221);
+border-right: 1px solid rgb(221, 221, 221);
+padding-left: 10px;
+padding-right: 10px;
+padding-top: 20px;
+margin-left: -10px;
+margin-right: -10px;
+margin-top: -20px;
+}
+
+a.tag:hover
+{
+background-color: black;
+}
+ul#profile_information
+{
+color: white !important;
+}
