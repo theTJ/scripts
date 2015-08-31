@@ -8,7 +8,7 @@
 export file=$1
 export filetype=$(file $1)
 
-if [[ $filetype == *"ASCII"* ]]
+if [[ $filetype == *"ASCII"* || $filetype == *"text"* ]]
 then
 	mousepad $file
 elif [[ $filetype == *"image data"* ]]
