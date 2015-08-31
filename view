@@ -1,0 +1,31 @@
+#########################################
+# text editor: mousepad			#
+# image viewer: sxiv			#
+# text file editor: odt2txt/catdoc	#
+# pdf viewer: mupdf			#
+#########################################
+
+export file=$1
+export filetype=$(file $1)
+
+if [[ $filetype == *"ASCII"* ]]
+then
+	mousepad $file
+elif [[ $filetype == *"image data"* ]]
+then
+	sxiv $file
+elif [[ $filetype == *"PDF"* ]]
+then
+	mupdf $file
+fi
+
+for arg; do
+	if [ "$arg" != "${arg%.odt}" ]; then
+		odt2txt $arg > /tmp/odttemp
+		mousepad /tmp/odttemp
+	elif [ "$arg" != "${arg%.doc}" ]; then
+		catdoc $arg > /tmp/doctemp
+		mousepad /tmp/doctemp
+	fi
+	done
+

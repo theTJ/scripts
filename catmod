@@ -1,0 +1,26 @@
+#!/bin/bash
+
+prog1='odt2txt'
+prog2='catdoc'
+
+if [[ -f $(which $prog1 2>/dev/null) && -f $(which $prog2 2>/dev/null) ]]
+    then
+
+
+
+	for arg; do
+	if [ "$arg" != "${arg%.odt}" ]; then
+		odt2txt $arg
+	elif [ "$arg" != "${arg%.doc}" ]; then
+		catdoc $arg
+	else
+		cat $arg
+	fi
+	done
+
+else
+
+echo "Um .odt und .doc - Dateien zu oeffnen muessen die Programme 'odt2txt' und
+'catdoc' installiert werden!"
+
+fi
