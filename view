@@ -17,7 +17,7 @@ then
 elif [[ $filetype == *"PDF"* ]]
 then
 	mupdf $file
-elif [[ $filetype == *"Video"* ]]
+elif [[ $filetype == *"Video"* || $filetype == *"MP4"* ]]
 then
 	vlc $file
 fi
