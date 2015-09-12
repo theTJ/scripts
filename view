@@ -8,7 +8,7 @@
 export file=$1
 export filetype=$(file $1)
 
-if [[ $filetype == *"ASCII"* ]]
+if [[ $filetype == *"ASCII"* || $filetype == *"text"* ]]
 then
 	mousepad $file
 elif [[ $filetype == *"image data"* ]]
@@ -17,6 +17,9 @@ then
 elif [[ $filetype == *"PDF"* ]]
 then
 	mupdf $file
+elif [[ $filetype == *"Video"* ]]
+then
+	vlc $file
 fi
 
 for arg; do
