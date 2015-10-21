@@ -1,8 +1,28 @@
 #!/bin/bash
 
-feeds=("/home/sebi/podcasts/ragecast.rss" "/home/sebi/podcasts/bewegtton/bewegtton-rss.xml")
+#Aktuelle Auslegung: 2 Feeds
+#
+#Todo: - feeds mit den Pfaden versehen
+# - versichern, dass Schreibrechte auf /tmp, sowie das aktuelle Verzeichnis existieren
+# - mit AUSZUFÜLLEN gekennzeichnete Einträge passend ergänzen
 
-export feedanzahl=${#feeds[*]}
+
+feeds=("/home/sebi/podcasts/ragecast.rss" "/home/sebi/podcasts/bewegtton/bewegtton-rss.xml")
+zielfeed="mergefeed.xml"
+
+date=$(date)
+echo "<?xml version='1.0' encoding='utf-8'?>
+<rss version='2.0'>
+<channel>
+<generator>Feedmerger https://github.com/todestoast/scripts/blob/master/feedmerger.sh</generator>
+<title>AUSZUFÜLLEN</title>
+<description>AUSZUFÜLLEN</description>
+<link>AUSZUFÜLLEN</link>
+<image><url>AUSZUFÜLLEN</url><title>AUSZUFÜLLEN</title><link>AUSZUFÜLLEN</link></image>
+<language>de-de</language>
+<pubDate>$date </pubDate>" > $zielfeed
+
+#export feedanzahl=${#feeds[*]}
 
 ## Datum von allen Feeds in textfile schreiben, dort anordnen danach auf Feeds übertragen
 
@@ -11,20 +31,20 @@ do
 
 while read -r line ; do
 	
-    echo -e ${feeds[$ix]} "\t" ${line} >> blabla.txt
+    echo -e ${feeds[$ix]} "\t" ${line} >> /tmp/feed-datum.txt
     
 done< <(sed -n '/<item>/,/<\/item>/p' ${feeds[$ix]} | grep -i pubdate | sed 's/<pubDate>//g' | sed 's/<\/pubDate>//g')   
     
 done
 
-cat blabla.txt | cut -f2 |  while read line; do echo $(date -d "$line" +%s)" # "$line; done | sort -r | sed 's/.* # //' >> /tmp/sorted_dates
+cat /tmp/feed-datum.txt | cut -f2 |  while read line; do echo $(date -d "$line" +%s)" # "$line; done | sort -r | sed 's/.* # //' >> /tmp/sorted_dates
 
 #anzahl vorkommen jedes feeds
 
 for ix in ${!feeds[*]}
 do    
 
-export anzahl=$(cat blabla.txt | cut -f1 | grep -i ${feeds[$ix]} | wc -l)
+export anzahl=$(cat /tmp/feed-datum.txt | cut -f1 | grep -i ${feeds[$ix]} | wc -l)
 
 echo -e ${feeds[$ix]} "\t" $anzahl >> /tmp/feedanzahl
 
@@ -32,87 +52,56 @@ echo -e ${feeds[$ix]} "\t" $anzahl >> /tmp/feedanzahl
 
 done
 
+inhalt=$(cat /tmp/sorted_dates | wc -c)
 
-#line=$(head -n 1 /tmp/sorted_dates)
+# Anzahl der <item>s pro Feed
+#a=$(cat /tmp/feedanzahl| grep -i ${feeds[0]} | cut -f2 | sed -e 's/^[ \t]*//')
+#i=$(cat /tmp/feedanzahl| grep -i ${feeds[1]} | cut -f2 | sed -e 's/^[ \t]*//')
+a=0
+i=0
 
-#die betroffene zeile
-
-#cat blabla.txt | grep -i $line | cut -f1
-
-#position x aus Datei in mergedfeed schreiben
-
-anzahlfeed1=$(cat /tmp/feedanzahl| grep -i ${feeds[0]} | cut -f2 | sed -e 's/^[ \t]*//')
-
-
-anzahlfeed2=$(cat /tmp/feedanzahl| grep -i ${feeds[1]} | cut -f2 | sed -e 's/^[ \t]*//')
-
-date=$(tail -1 /tmp/sorted_dates)
-file=$(cat blabla.txt | grep -i "${date}" | cut -f1)
-
-
-#wenn File == feed1
-while ! [[ $anzahlfeed1 -eq 0 && $anzahlfeed2 -eq 0 ]] 
+while ! [[ $inhalt -eq 0 ]] 
 do
 
-echo "abfrage1: $file"
-echo "${feeds[0]}"
-if [ "$file" == "${feeds[0]}" ]
-then
-echo "feed1"
+	# wir lesen das datum der letzten Zeile
+	date=$(tail -1 /tmp/sorted_dates)
+	echo "date: $date"
+
+	#wir löschen die letzte zeile
+	sed -i '$ d' /tmp/sorted_dates
+
+	#wir suchen die Zeile mit dem Datum in beiden Files
+	file=$(cat /tmp/feed-datum.txt | grep -i "${date}"  | cut -f1 | tr -d ' ')
+	echo "file: $file"
+
+	#wir schreiben die gefundene Zeile in den mergefeed
 	
-	# wir lesen das datum der letzten Zeile
-	date=$(tail -1 /tmp/sorted_dates)
+	if [ "$file" == "/home/sebi/podcasts/bewegtton/bewegtton-rss.xml" ]
+	then
+		echo "bewegtton in mergefeed geschrieben"
+		cat $file | sed '/^<item>/{x;s/^/X/;/^X\{'$i'\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> $zielfeed
+		export i=$((i+1))
+		echo "----i: $i"
+	fi
+	
+	if [ "$file" == "/home/sebi/podcasts/ragecast.rss" ]
+	then
+	echo "ragecast in mergefeed geschrieben"
+		cat $file | sed '/^<item>/{x;s/^/X/;/^X\{'$a'\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> $zielfeed
+		export a=$((a+1))
+		echo "----a: $a"
+	fi
+	
+	inhalt=$(cat /tmp/sorted_dates | wc -c)
 
-	#wir löschen die letzte zeile
-	sed -i '$ d' /tmp/sorted_dates
-
-	#wir suchen die Zeile mit dem Datum in beiden Files
-	file=$(cat blabla.txt | grep -i $date | cut -f1)
-
-	#wir schreiben die gefundene Zeile in den mergefeed
-
-	cat $file | sed '/^<item>/{x;s/^/X/;/^X\{3\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> mergefeed.xml
-	echo "in mergefeed geschrieben"
-	export anzahlfeed1 = $(($anzahlfeed1-1))
-fi
-
-echo "abfrage2: $file"
-echo "${feeds[1]}"
-if [ "$file" == "${feeds[1]}" ]
-then
-echo "feed2"
-	# wir lesen das datum der letzten Zeile
-	date=$(tail -1 /tmp/sorted_dates)
-
-	#wir löschen die letzte zeile
-	sed -i '$ d' /tmp/sorted_dates
-
-	#wir suchen die Zeile mit dem Datum in beiden Files
-	file=$(cat blabla.txt | grep -i $date | cut -f1)
-
-	#wir schreiben die gefundene Zeile in den mergefeed
-
-	cat $file | sed '/^<item>/{x;s/^/X/;/^X\{3\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> mergefeed.xml
-	echo "in mergefeed geschrieben"
-	export anzahlfeed2 = $(($anzahlfeed2-1))
-fi
 done
 
+echo "</channel>
+</rss>" >> $zielfeed
 
-#wir brauchen feedanzahl beider feeds
-
-#alle runterzählen, bis alle 0 sind.
-
-##zugriff auf dritte Position
-
-#sed '/^<item>/{x;s/^/X/;/^X\{3\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}'
-
-
-
-##parse items
-
-#sed -n '/<item>/,/<\/item>/p'
-
+rm /tmp/sorted_dates
+rm /tmp/feedanzahl
+rm /tmp/feed-datum.txt
 
 
 
