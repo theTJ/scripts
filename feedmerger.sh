@@ -7,7 +7,7 @@
 # - mit AUSZUFÜLLEN gekennzeichnete Einträge passend ergänzen
 
 
-feeds=("/home/sebi/podcasts/ragecast.rss" "/home/sebi/podcasts/bewegtton/bewegtton-rss.xml")
+feeds=("/path/to/feed1.xml" "/path/to/feed2.xml")
 zielfeed="mergefeed.xml"
 
 date=$(date)
