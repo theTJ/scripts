@@ -33,7 +33,7 @@ SPAN.Icon.Icon--heartBadge
 
 SPAN.Icon.Icon--heartBadge:after
 {
-   content: '✮';
+   content: '✰';
    visibility: visible;
    display: block;
    position: absolute;
