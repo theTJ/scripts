@@ -1,3 +1,4 @@
+/* For other emojis than a star see http://getemoji.com/ */
 .HeartAnimationContainer
 {
 visibility: hidden;
@@ -14,14 +15,14 @@ color: grey;
 {
 color: grey;
 }
-
 SPAN.Icon.Icon--heartBadge
 {
 visibility: hidden;
 }
 SPAN.Icon.Icon--heartBadge:after
 {
-content: '✰';
+content: '★';
+font-size: 150%;
 visibility: visible;
 display: block;
 position: absolute;
