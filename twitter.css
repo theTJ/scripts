@@ -1,3 +1,7 @@
+## replaces the heart in every tweet with a grey star
+## to change the color of the star just replace 'color: grey;' 
+## with the color of your choice
+
 .HeartAnimationContainer 
 {
      visibility: hidden;
@@ -13,4 +17,20 @@
 .IconTextContainer
 {
     color: grey;
+}
+
+## replaces the heart in the "mentions" tab with a yellow star
+
+SPAN.Icon.Icon--heartBadge
+{
+    visibility: hidden;
+}
+
+SPAN.Icon.Icon--heartBadge:after
+{
+   content: '✮';
+   visibility: visible;
+   display: block;
+   position: absolute;
+   color: yellow;
 }
