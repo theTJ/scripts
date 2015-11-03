@@ -1,6 +1,11 @@
-## replaces the heart in every tweet with a grey star
-## to change the color of the star just replace 'color: grey;' 
-## with the color of your choice
+#################################################################
+## replaces the heart in every tweet with a grey star		#
+## to change the color of the star just replace 'color: grey;'  #
+## with the color of your choice				#
+## For another logo change the star emoji with anotherone	#
+## See here for other emojis: http://getemoji.com/		#
+#################################################################
+
 
 .HeartAnimationContainer 
 {
