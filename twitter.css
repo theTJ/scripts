@@ -1,12 +1,10 @@
 #################################################################
-## replaces the heart in every tweet with a grey star		#
-## to change the color of the star just replace 'color: grey;'  #
-## with the color of your choice				#
-## For another logo change the star emoji with anotherone	#
-## See here for other emojis: http://getemoji.com/		#
+## replaces the heart in every tweet with a grey star 		#
+## to change the color of the star just replace 'color: grey;' 	#
+## with the color of your choice 				#
+## For another logo change the star emoji with anotherone 	#
+## See here for other emojis: http://getemoji.com/ 		#
 #################################################################
-
-
 .HeartAnimationContainer 
 {
      visibility: hidden;
@@ -25,7 +23,6 @@
 }
 
 ## replaces the heart in the "mentions" tab with a yellow star
-
 SPAN.Icon.Icon--heartBadge
 {
     visibility: hidden;
