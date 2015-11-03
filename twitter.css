@@ -6,6 +6,7 @@ visibility: hidden;
 .HeartAnimationContainer:after
 {
 content: '✮';
+font-size: 120%;
 visibility: visible;
 display: block;
 position: absolute;
