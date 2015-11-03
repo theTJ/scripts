@@ -1,0 +1,16 @@
+.HeartAnimationContainer 
+{
+     visibility: hidden;
+}
+.HeartAnimationContainer:after 
+{
+     content: '✮';
+     visibility: visible;
+     display: block;
+     position: absolute;
+     color: grey;
+}
+.IconTextContainer
+{
+    color: grey;
+}
