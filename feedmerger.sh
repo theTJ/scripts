@@ -18,8 +18,7 @@ echo "<?xml version='1.0' encoding='utf-8'?>
 <title>AUSZUFÜLLEN</title>
 <description>AUSZUFÜLLEN</description>
 <link>AUSZUFÜLLEN</link>
-<image><url>AUSZUFÜLLEN</url><title>AUSZUFÜLLEN</title><link>AUSZUFÜLLEN</link></image>
-<language>de-de</language>
+<image><url>AUSZUFÜLLEN</url><title>AUSZUFÜLLEN</title><link>AUSZUFÜLLEN</link></image>0<language>de-de</language>
 <pubDate>$date </pubDate>" > $zielfeed
 
 #export feedanzahl=${#feeds[*]}
@@ -76,17 +75,15 @@ do
 
 	#wir schreiben die gefundene Zeile in den mergefeed
 	
-	if [ "$file" == "/home/sebi/podcasts/bewegtton/bewegtton-rss.xml" ]
+	if [ "$file" == feeds[0] ]
 	then
-		echo "bewegtton in mergefeed geschrieben"
 		cat $file | sed '/^<item>/{x;s/^/X/;/^X\{'$i'\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> $zielfeed
 		export i=$((i+1))
 		echo "----i: $i"
 	fi
 	
-	if [ "$file" == "/home/sebi/podcasts/ragecast.rss" ]
+	if [ "$file" == feeds[1] ]
 	then
-	echo "ragecast in mergefeed geschrieben"
 		cat $file | sed '/^<item>/{x;s/^/X/;/^X\{'$a'\}$/ba;x};d;:a;x;:b;$!{n;/^<\/item>/!bb}' >> $zielfeed
 		export a=$((a+1))
 		echo "----a: $a"
