@@ -36,7 +36,7 @@ zielfeed="mergefeed.xml"
 date=$(date)
 echo "<?xml version='1.0' encoding='utf-8'?>
 <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'
-	xmlns:bitlove='http://bitlove.org' xmlns:itunes='http://www.itunes.com/dtds/podcast-1.0.dtd' xmlns:psc='http://podlove.org/simple-chapters' xmlns:content='http://purl.org/rss/1.0/modules/content/' xmlns:fh='http://purl.org/syndication/history/1.0'>
+xmlns:bitlove='http://bitlove.org' xmlns:itunes='http://www.itunes.com/dtds/podcast-1.0.dtd' xmlns:psc='http://podlove.org/simple-chapters' xmlns:content='http://purl.org/rss/1.0/modules/content/' xmlns:fh='http://purl.org/syndication/history/1.0' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:wfw='http://wellformedweb.org/CommentAPI/' xmlns:slash='http://purl.org/rss/1.0/modules/slash/'>
 <channel>
 <generator>Feedmerger https://github.com/todestoast/scripts/blob/master/feedmerger.sh</generator>
 <title>EDIT</title>
